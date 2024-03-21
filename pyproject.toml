@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "djangoblog"
+version = "0.1.0"
+description = "Django blog project for learning and development purposes"
+authors = ["Max Suslowicz <max@suslowicz.co>"]
+license = "GNU GPL v3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+ruff = "^0.3.3"
+isort = "^5.13.2"
+mypy = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
