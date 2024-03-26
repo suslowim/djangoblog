@@ -5,7 +5,11 @@
             <div class="card-body">
                 <article>
                     <h2>{{ post.title }}</h2>
-                    <p class="text-body-secondary border-bottom pb-2">By {{ post.author }}
+                    <p class="text-body-secondary border-bottom pb-2">
+                        <img src="{{ post.author.profile.image.url }}"
+                             alt="Profile image"
+                             class="rounded-circle article-img me-2">
+                        By <a href="#" class="link-info">{{ post.author }}</a>
                         on {{ post.date_posted|date:"F d, Y" }}</p>
                     <p class="text-body">{{ post.content }}</p>
                 </article>
