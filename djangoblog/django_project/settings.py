@@ -115,6 +115,11 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# Location of media files on file system.
+MEDIA_ROOT = BASE_DIR / "media"
+# URL root for media files.
+MEDIA_URL = "/media/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -124,6 +129,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+# View to redirect to on successful login.
 LOGIN_REDIRECT_URL = "blog-home"
 # Default login route, used e.g. as the redirect for @login_required decorators.
 LOGIN_URL = "login"

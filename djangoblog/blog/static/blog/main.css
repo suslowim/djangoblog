@@ -55,3 +55,15 @@ a {
 article {
     border-color: hsl(231.43 10.05% 59.02% / 1);
 }
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.user-info {
+    margin-top: 10px;
+    text-align: center;
+}

@@ -3,6 +3,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="card mb-4 shadow-sm">
-        <h1>{{ user.username }}</h1>
+        <div class="p-4">
+            <div class="d-flex justify-content-center p-2">
+                <img class="rounded-circle img-thumbnail img-fluid account-img" alt="Profile Picture"
+                     src="{{ user.profile.image.url }}">
+                <div class="user-info align-content-center">
+                    <h2 class="">Welcome, {{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}
