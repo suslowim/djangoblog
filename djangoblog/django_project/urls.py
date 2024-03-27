@@ -68,6 +68,7 @@ urlpatterns = [
     ),
     # Routes from the site root to the blog module
     path("", include("blog.urls")),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:

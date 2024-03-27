@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "crispy_forms",
     "crispy_bootstrap5",
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"

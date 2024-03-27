@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Django Server" type="Python.DjangoServer" factoryName="Django server">
+  <configuration default="false" name="Django Server" type="Python.DjangoServer" factoryName="Django server" singleton="false">
     <module name="djangoblog" />
     <option name="ENV_FILES" value="" />
     <option name="INTERPRETER_OPTIONS" value="" />

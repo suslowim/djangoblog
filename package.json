@@ -4,7 +4,8 @@
   "description": "Django blog learning/experimentation",
   "main": "postcss.config.js",
   "scripts": {
-    "dev": "npx tailwindcss -i ./static/src/input.css -o ./static/src/styles.css --watch",
+    "tailwind-watch": "npx tailwindcss -i ./djangoblog/blog/static/blog/main.css -o ./djangoblog/blog/static/blog/output.css --watch\n",
+    "tailwind-build": "npx tailwindcss -i ./djangoblog/blog/static/blog/main.css -o ./djangoblog/blog/static/blog/output.css --watch\n",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
