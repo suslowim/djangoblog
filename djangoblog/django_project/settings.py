@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from os import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
     "crispy_forms",
-    "crispy_bootstrap5"
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = "blog-home"
 # Default login route, used e.g. as the redirect for @login_required decorators.
 LOGIN_URL = "login"
+
+# Email setup for password resets
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "email-smtp.eu-west-2.amazonaws.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = environ.get("EMAIL_USER")
+EMAIL_HOST_PASSWORD = environ.get("EMAIL_PASSWORD")
+DEFAULT_FROM_EMAIL = environ.get("EMAIL_FROM")
