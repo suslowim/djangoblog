@@ -39,6 +39,7 @@
                     </li>
                     <div class="vr mx-3"></div>
                     {% if user.is_authenticated %}
+                        <li class="nav-item"><a href="{% url "post-create" %}" class="nav-link">New Post</a>
                         <li class="nav-item"><a href="{% url "profile" %}" class="nav-link">Profile</a>
                         <li class="nav-item justify-content-end">
                             <form method="POST" action="{% url "logout" %}">
