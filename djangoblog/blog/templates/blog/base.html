@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="dark light">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static "blog/output.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "blog/output.css" %}"></link>
     {% if title %}
         <title>Django Blog - {{ title }}</title>
     {% else %}
@@ -15,45 +14,45 @@
 </head>
 <body class="bg-slate-200">
 <header class="site-header">
-    <nav class="bg-gray-800 shadow-xl">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+    <nav class="bg-gradient-to-b shadow-xl from-slate-600 to-slate-700">
+        <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex relative justify-between items-center h-16">
+                <div class="flex absolute inset-y-0 left-0 items-center sm:hidden">
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex flex-1 justify-center items-center sm:justify-start sm:items-stretch">
                     <div class="flex flex-shrink-0 items-center">
                         <a class="w-auto font-medium shadow-lg" href="{% url "blog-home" %}">Max's Blog</a>
                     </div>
-                    <div class="hidden sm:ml-6 sm:block">
+                    <div class="hidden sm:block sm:ml-6">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{% url "blog-home" %}"
-                               class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                               class="py-2 px-3 text-sm font-medium text-white bg-gradient-to-b rounded-md border-2 x-3 from-slate-700 to-slate-800 border-slate-800"
                                aria-current="page">Home</a>
                             <a href="{% url "blog-about" %}"
-                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
+                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">About</a>
                             <a href="#"
-                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Services</a>
+                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Services</a>
                             <a href="#"
-                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Contact</a>
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 sm:ml-6">
                     {% if user.is_authenticated %}
                         <a href="{% url "post-create" %}"
-                           class="text-gray-200 bg-sky-600 hover:bg-sky-500 hover:text-white rounded-md px-3 py-2 text-sm font-bold rounded">New Post</a>
+                           class="py-2 px-3 mr-1 text-sm font-bold text-gray-200 bg-gradient-to-b rounded-md hover:text-white from-sky-600 to-sky-700 hover:bg-sky-500">New Post</a>
                         <a href="{% url "profile" %}"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profile</a>
+                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Profile</a>
                         <form method="POST" action="{% url "logout" %}">
                                 {% csrf_token %}
-                                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" type="submit">Log Out</button>
+                                <button class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700" type="submit">Log Out</button>
                             </form>
                     {% else %}
                         <a href="{% url "login" %}"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
+                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Login</a>
                         <a href="{% url "register" %}"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Register</a>
+                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Register</a>
                     {% endif %}
                 </div>
             </div>
@@ -62,7 +61,7 @@
 </header>
 <main role="main" class="container mx-auto sm:px-4">
     <div class="flex flex-wrap mt-4">
-        <div class="md:w-2/3 pr-4 pl-4 ms-4">
+        <div class="pr-4 pl-4 md:w-2/3 ms-4">
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}">{{ message }}</div>
@@ -70,10 +69,10 @@
             {% endif %}
             {% block content %}{% endblock %}
         </div>
-        <div class="md:w-1/4 pr-4 pl-4 mb-4">
-            <div class="relative flex flex-col min-w-0 rounded bg-slate-100 border border-1 border-slate-300 text-slate-800 h-full shadow-xl">
+        <div class="pr-4 pl-4 mb-4 md:w-1/4">
+            <div class="flex relative flex-col min-w-0 h-full rounded border shadow-xl bg-slate-100 border-1 border-slate-300 text-slate-800">
                 <div class="flex-auto p-6">
-                    <h3 class="border-b border-slate-400 pb-2 text-lg">Sidebar</h3>
+                    <h3 class="pb-2 text-lg border-b border-slate-400">Sidebar</h3>
                     <ul class="mt-2">
                         <li>Announcements</li>
                         <li>Calendar</li>
