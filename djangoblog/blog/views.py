@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
     DetailView,
@@ -26,6 +27,29 @@ class PostListView(ListView):
     template_name = "blog/home.html"
     # Ordering newest to oldest (inverse of date_posted ordering.)
     ordering = ["-date_posted"]
+    # Number of posts per page.
+    paginate_by = 5
+
+
+class UserPostListView(ListView):
+    """List of all blog posts from a certain user."""
+
+    model = Post
+    # Name of variable to iterate over - matches the one in the template.
+    # If not set, the default variable is 'object_list'.
+    context_object_name = "posts"
+    # Default is <app>/<model_<view type>.html
+    template_name = "blog/user_posts.html"
+    # Ordering newest to oldest (inverse of date_posted ordering.)
+    ordering = ["-date_posted"]
+    # Number of posts per page.
+    paginate_by = 5
+
+    def get_queryset(self):
+        """Return only posts from the specified user."""
+        # Kwargs are the HTTP parameters passed into the URL (created in blog.urls.)
+        user = get_object_or_404(User, username=self.kwargs.get("username"))
+        return Post.objects.filter(author=user).order_by("-date_posted")
 
 
 class PostDetailView(DetailView):
