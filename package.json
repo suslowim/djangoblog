@@ -1,0 +1,21 @@
+{
+  "name": "djangoblog",
+  "version": "0.1.0",
+  "description": "Django blog learning/experimentation",
+  "main": "postcss.config.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./static/src/input.css -o ./static/src/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "djangoblog"
+  },
+  "author": "Max Suslowicz",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
