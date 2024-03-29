@@ -1,23 +1,26 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <article>
-                <h2>{{ post.title }}</h2>
-                <p class="text-body-secondary border-bottom pb-2">
-                    <img src="{{ object.author.profile.image.url }}"
-                         alt="Profile image"
-                         class="rounded-circle article-img me-2">
-                    By <a href="{% url "user-posts" object.author.username %}" class="link-info">{{ object.author }}</a>
-                    on {{ object.date_posted|date:"F d, Y" }}
-                    {% if object.author == user %}
-                        <div class="">
-                    	<a class="btn btn-secondary btn-sm my-1" href="{% url "post-update" object.id %}">Update</a>
-                    	<a class="btn btn-danger btn-sm my-1" href="{% url "post-delete" object.id %}">Delete</a>
-                        </div>
-                    {% endif %} </p>
-                <p class="text-body">{{ object.content }}</p>
-            </article>
+  <div
+    class="flex relative flex-col min-w-0 break-words rounded border-2 shadow-xl bg-slate-100 border-slate-300 text-slate-100">
+    <div class="flex-auto p-6">
+      <article class="text-slate-800">
+        <h2 class="mb-2 text-xl">{{ post.title }}</h2>
+        <div class="flex relative flex-col">
+          <img src="{{ object.author.profile.image.url }}"
+               alt="Profile image"
+               class="inline h-5 rounded">
+          <p class=mb-2 border-b-2 border-slate-300">
+          By <a href="{% url "user-posts" object.author.username %}"
+                class="hover:underline link-info text-sky-700">{{ object.author }}</a>
+          on {{ object.date_posted|date:"F d, Y" }}
+          {% if object.author == user %}
+            <a class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700" href="{% url "post-update" object.id %}">Update</a>
+            <a class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700" href="{% url "post-delete" object.id %}">Delete</a>
+          {% endif %}
+          </p>
         </div>
+        <p class="text-body">{{ object.content }}</p>
+      </article>
     </div>
+  </div>`
 {% endblock content %}
