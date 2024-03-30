@@ -9,7 +9,7 @@
           <img src="{{ object.author.profile.image.url }}"
                alt="Profile image"
                class="inline h-5 rounded">
-          <p class=mb-2 border-b-2 border-slate-300">
+          <p class=mb-2">
           By <a href="{% url "user-posts" object.author.username %}"
                 class="hover:underline link-info text-sky-700">{{ object.author }}</a>
           on {{ object.date_posted|date:"F d, Y" }}

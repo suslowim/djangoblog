@@ -2,88 +2,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="color-scheme" content="dark light">
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="dark light">
   <link rel="stylesheet" type="text/css" href="{% static "blog/output.css" %}"></link>
-    {% if title %}
-        <title>Django Blog - {{ title }}</title>
-    {% else %}
-        <title>Django Blog</title>
-    {% endif %}
+  {% if title %}
+    <title>Django Blog - {{ title }}</title>
+  {% else %}
+    <title>Django Blog</title>
+  {% endif %}
 
 </head>
 <body class="bg-slate-200">
 <header class="site-header">
-    <nav class="bg-gradient-to-b shadow-xl from-slate-600 to-slate-700">
-        <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="flex relative justify-between items-center h-16">
-                <div class="flex absolute inset-y-0 left-0 items-center sm:hidden">
-                </div>
-                <div class="flex flex-1 justify-center items-center sm:justify-start sm:items-stretch">
-                    <div class="flex flex-shrink-0 items-center">
-                        <a class="w-auto font-medium shadow-lg" href="{% url "blog-home" %}">Max's Blog</a>
-                    </div>
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="{% url "blog-home" %}"
-                               class="py-2 px-3 text-sm font-medium text-white bg-gradient-to-b rounded-md border-2 x-3 from-slate-700 to-slate-800 border-slate-800"
-                               aria-current="page">Home</a>
-                            <a href="{% url "blog-about" %}"
-                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">About</a>
-                            <a href="#"
-                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Services</a>
-                            <a href="#"
-                               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 sm:ml-6">
-                    {% if user.is_authenticated %}
-                        <a href="{% url "post-create" %}"
-                           class="py-2 px-3 mr-1 text-sm font-bold text-gray-200 bg-gradient-to-b rounded-md hover:text-white from-sky-600 to-sky-700 hover:bg-sky-500">New Post</a>
-                        <a href="{% url "profile" %}"
-                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Profile</a>
-                        <form method="POST" action="{% url "logout" %}">
-                                {% csrf_token %}
-                                <button class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700" type="submit">Log Out</button>
-                            </form>
-                    {% else %}
-                        <a href="{% url "login" %}"
-                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Login</a>
-                        <a href="{% url "register" %}"
-                           class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Register</a>
-                    {% endif %}
-                </div>
-            </div>
+  <nav class="bg-gradient-to-b shadow-xl from-slate-600 to-slate-700">
+    <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex relative justify-between items-center h-16">
+        <div class="flex absolute inset-y-0 left-0 items-center sm:hidden">
         </div>
-    </nav>
+        <div class="flex flex-1 justify-center items-center sm:justify-start sm:items-stretch">
+          <div class="flex flex-shrink-0 items-center">
+            <a class="w-auto font-medium shadow-lg" href="{% url "blog-home" %}">Max's Blog</a>
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="{% url "blog-home" %}"
+                 class="py-2 px-3 text-sm font-medium text-white bg-gradient-to-b rounded-md border-2 x-3 from-slate-700 to-slate-800 border-slate-800"
+                 aria-current="page">Home</a>
+              <a href="{% url "blog-about" %}"
+                 class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 hover:border-slate-900">About</a>
+              <a href="#"
+                 class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Services</a>
+              <a href="#"
+                 class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 sm:ml-6">
+          {% if user.is_authenticated %}
+            <a href="{% url "post-create" %}"
+               class="py-2 px-3 mr-1 text-sm font-bold text-gray-200 bg-gradient-to-b rounded-md hover:text-white from-sky-600 to-sky-700 hover:bg-sky-400">New
+              Post</a>
+            <a href="{% url "profile" %}"
+               class="hidden py-2 px-3 text-sm font-medium text-gray-300 rounded-md sm:inline hover:text-white hover:bg-gray-700">Profile</a>
+            <form method="POST" action="{% url "logout" %}">
+              {% csrf_token %}
+              <button class="hidden py-2 px-3 text-sm font-medium text-gray-300 rounded-md sm:inline hover:text-white hover:bg-gray-700"
+                      type="submit">Log Out
+              </button>
+            </form>
+          {% else %}
+            <a href="{% url "login" %}"
+               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Login</a>
+            <a href="{% url "register" %}"
+               class="py-2 px-3 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Register</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 
-<main role="main" class="container mx-auto sm:px-4">
-    <div class="flex flex-wrap mt-4">
-        <div class="md:w-2/3 md:ms-0 lg:ms-4">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            {% block content %}{% endblock %}
-        </div>
-        <div class="pr-4 pl-4 mb-4 sm:justify-end md:w-1/4">
-            <div class="flex relative flex-col min-w-0 h-full rounded border shadow-xl sm:bg-none sm:border-none sm:shadow-none border-slate-300 text-slate-800 bg-slate-100">
-                <div class="flex-auto p-6">
-                    <h3 class="pb-2 text-lg border-b border-slate-400">Sidebar</h3>
-                    <ul class="mt-2">
-                        <li>Announcements</li>
-                        <li>Calendar</li>
-                        <li>Tracker</li>
-                        <li>Other</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<main role="main" class="container mx-auto sm:px-4 text-slate-800">
+  <div class="flex flex-wrap mt-4">
+    <div class="md:w-2/3 md:ms-0 lg:ms-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
     </div>
+    <div class="pr-4 pl-4 mb-4 md:w-1/4">
+      <div
+        class="flex relative flex-col min-w-0 h-full bg-none rounded border-none shadow-none md:border md:shadow-xl text-slate-800 md:border-slate-300 md:bg-slate-100">
+        <div class="flex-auto p-6">
+          <ul class="text-sm leading-relaxed">
+            <li class="select-none hover:underline">Announcements</li>
+            <li class="select-none hover:underline">Calendar</li>
+            <li class="select-none hover:underline">Tracker</li>
+            <li class="select-none hover:underline">Other</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 </body>
 </html>

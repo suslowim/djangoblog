@@ -2,7 +2,7 @@
 {% block content %}
   {% for post in posts %}
     <div
-      class="flex relative flex-col mb-4 min-w-0 break-words rounded border-2 shadow-xl sm:shadow-none bg-slate-100 text-slate-800 border-slate-300">
+      class="flex relative flex-col mb-4 min-w-0 break-words rounded border shadow-none md:shadow-xl bg-slate-100 text-slate-800 border-slate-300">
       <div class="flex-auto p-6">
         <article>
           <h2 class="mb-2 text-xl hover:underline text hover:text-sky-700"><a
@@ -20,24 +20,24 @@
     </div>
   {% endfor %}
   {% if is_paginated %}
-    <div class="flex justify-center">
+    <div class="flex justify-center md:justify-start">
       {% if page_obj.has_previous %}
         <a
-          class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
           href="?page=1">First</a>
         <a
-          class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
           href="?page={{ page_obj.previous_page_number }}">Previous</a>
       {% endif %}
 
       {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
           <a
-            class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+            class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
             href="?page={{ num }}">{{ num }}</a>
         {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
           <a
-            class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+            class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
             href="?page={{ num }}">{{ num }}</a>
 
         {% endif %}
@@ -45,10 +45,10 @@
 
       {% if page_obj.has_next %}
         <a
-          class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
           href="?page={{ page_obj.next_page_number }}">Next</a>
         <a
-          class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white ms-1 me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
           href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
     </div>

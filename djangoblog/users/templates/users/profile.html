@@ -2,25 +2,25 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="card mb-4 shadow-sm">
+    <div class="mb-4 rounded border shadow-xl bg-slate-100 border-slate-300">
         <div class="p-4">
-            <div class="d-flex justify-content-center p-2">
-                <img class="rounded-circle img-thumbnail img-fluid account-img" alt="Profile Picture"
+            <div class="flex justify-center p-2 mb-4">
+                <img class="object-cover justify-center w-20 h-20 rounded-full" alt="Profile Picture"
                      src="{{ user.profile.image.url }}">
-                <div class="user-info align-content-center">
-                    <h2 class="">Welcome, {{ user.username }}</h2>
+                <div class="ms-4">
+                    <h2 class="mt-2 text-3xl">Welcome, {{ user.username }}</h2>
                     <p class="text-secondary">{{ user.email }}</p>
                 </div>
             </div>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Update your details...</legend>
+                    <legend class="mb-4 border-bottom">Update your details...</legend>
                     {{ u_form|crispy }}
                     {{ p_form|crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info mb-3" type="submit">Update</button>
+                    <button class="p-2 mb-3 text-base rounded border-2 hover:text-white text-sky-700 bg-slate-100 hover:bg-sky-700" type="submit">Update</button>
                 </div>
             </form>
         </div>
