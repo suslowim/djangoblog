@@ -3,27 +3,30 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content %}
-    <div class="mb-4 rounded border shadow-xl bg-slate-50 border-slate-300">
-        <div class="p-8">
-            <div class="flex justify-center p-2 pb-8 border-b-2 scroll-mb-28">
-                <img class="object-cover justify-center w-20 h-20 rounded-full" alt="Profile Picture"
-                     src="{{ user.profile.image.url }}">
-                <div class="ms-4">
-                    <h2 class="mt-2 text-3xl">Welcome, {{ user.username }}</h2>
-                    <p class="text-secondary">{{ user.email }}</p>
-                </div>
-            </div>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="mb-4 border-bottom">Update your details...</legend>
-                    {{ u_form|crispy }}
-                    {{ p_form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="p-2 mb-3 text-base rounded border-2 hover:text-white text-sky-700 bg-slate-100 hover:bg-sky-700" type="submit">Update</button>
-                </div>
-            </form>
+  <div class="mb-4 rounded border shadow-xl bg-slate-50 border-slate-300">
+    <div class="p-8">
+      <div class="flex justify-center p-2 pb-8 border-b-2 scroll-mb-28">
+        <img class="object-cover justify-center w-20 h-20 rounded-full" alt="Profile Picture"
+             src="{{ user.profile.image.url }}">
+        <div class="ms-4">
+          <h2 class="mt-2 text-3xl">Welcome, {{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
         </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="mt-4">
+          <legend class="mb-4 border-bottom">Update your details...</legend>
+          {{ u_form|crispy }}
+          {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button
+            class="p-2 text-base bg-white rounded border hover:text-white border-sky-700 text-sky-700 hover:bg-sky-700"
+            type="submit">Update
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 {% endblock content %}

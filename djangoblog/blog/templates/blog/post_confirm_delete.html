@@ -3,19 +3,25 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content %}
-    <div class="mb-4 shadow-sm card">
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="mb-4 border-bottom">Delete Post</legend>
-                    <h2>Are you sure you want to delete the post "{{ object.title }}"?</h2>
-                </fieldset>
-                <div class="form-group">
-                    <button class="mb-3 btn btn-outline-danger" type="submit">Yes, Delete</button>
-                    <a class="mb-3 btn btn-outline-secondary" href="{% url "post-detail" object.id %}">Cancel</a>
-                </div>
-            </form>
+  <div
+    class="flex relative flex-col min-w-0 break-words rounded border-2 shadow-xl bg-slate-50 border-slate-300 text-slate-800">
+    <div class="flex-auto p-6">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="mb-4">
+          <legend class="mb-2 text-xl">Delete Post</legend>
+          <h2 class="pt-4 border-t border-slate-300">Are you sure you want to delete the post "{{ object.title }}"?</h2>
+        </fieldset>
+        <div class="">
+          <button
+            class="inline-block py-1 px-3 font-normal leading-normal text-center text-red-700 no-underline align-middle bg-white rounded border border-red-700 shadow-sm select-none hover:text-white hover:bg-red-700 whitespace-no-wrap"
+            type="submit">Yes, Delete
+          </button>
+          <a
+            class="inline-block py-1 px-3 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+            href="{% url "post-detail" object.id %}">Cancel</a>
         </div>
+      </form>
     </div>
+  </div>
 {% endblock content %}

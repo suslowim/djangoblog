@@ -1,21 +1,21 @@
 {% extends "blog/base.html" %}
 {% block content %}
   <div
-    class="flex relative flex-col min-w-0 break-words rounded border-2 shadow-xl bg-slate-100 border-slate-300 text-slate-100">
+    class="flex relative flex-col min-w-0 break-words rounded border-2 shadow-xl bg-slate-50 border-slate-300 text-slate-800">
     <div class="flex-auto p-6">
       <article class="text-slate-800">
         <h2 class="mb-2 text-xl">{{ post.title }}</h2>
         <div class="flex relative flex-col">
+          <p class="pb-2 mb-2 border-b-2 border-slate-300">
           <img src="{{ object.author.profile.image.url }}"
                alt="Profile image"
-               class="inline h-5 rounded">
-          <p class=mb-2">
+               class="inline h-5 rounded-3xl">
           By <a href="{% url "user-posts" object.author.username %}"
                 class="hover:underline link-info text-sky-700">{{ object.author }}</a>
           on {{ object.date_posted|date:"F d, Y" }}
           {% if object.author == user %}
             <a class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700" href="{% url "post-update" object.id %}">Update</a>
-            <a class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none hover:text-white whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700" href="{% url "post-delete" object.id %}">Delete</a>
+            <a class="inline-block py-1 px-3 mb-4 font-normal leading-normal text-center text-red-700 no-underline align-middle bg-white rounded border border-red-700 shadow-sm select-none hover:text-white hover:bg-red-700 whitespace-no-wrap" href="{% url "post-delete" object.id %}">Delete</a>
           {% endif %}
           </p>
         </div>
