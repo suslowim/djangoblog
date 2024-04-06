@@ -1,17 +1,18 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
+{% load tailwind_filters %}
 {% block content %}
-    <div class="card mb-4 shadow-sm">
+    <div class="p-4 mb-4 rounded border shadow-xl bg-slate-50 border-slate-300">
         <div class="card-body">
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Blog Post</legend>
+                    <legend class="mb-4 text-xl border-bottom text-slate-800">Blog Post</legend>
                     {{ form|crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info mb-3" type="submit">Post</button>
+                    <button class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700" type="submit">Post</button>
                 </div>
             </form>
         </div>

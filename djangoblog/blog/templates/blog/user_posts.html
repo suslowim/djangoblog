@@ -1,42 +1,57 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<p class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</p>
-    {% for post in posts %}
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-                <article>
-                    <h2><a href="{% url "post-detail" post.id %}" class="article-title">{{ post.title }}</a></h2>
-                    <p class="text-body-secondary border-bottom pb-2">
-                        <img src="{{ post.author.profile.image.url }}"
-                             alt="Profile image"
-                             class="rounded-circle article-img me-2">
-                        By <a href="{% url "user-posts" post.author.username %}" class="link-info">{{ post.author }}</a>
-                        on {{ post.date_posted|date:"F d, Y" }}</p>
-                    <p class="text-body">{{ post.content }}</p>
-                </article>
-            </div>
-        </div>
-    {% endfor %}
-    {% if is_paginated %}
+  <p class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</p>
+  {% for post in posts %}
+    <div class="mb-4 shadow-sm card">
+      <div
+        class="flex relative flex-col p-4 mb-4 min-w-0 break-words rounded border shadow-none md:shadow-xl bg-slate-50 text-slate-800 border-slate-300">
+        <article>
+          <h2 class="mb-2 text-xl hover:underline text hover:text-sky-700"><a
+            href={% url "post-detail" post.id %}>{{ post.title }}</a></h2>
+          <p class="pb-2 border-b-2 border-slate-300">
+            <img src="{{ post.author.profile.image.url }}"
+                 alt="Profile image"
+                 class="inline h-5 rounded-3xl">
+            By <a href="{% url "user-posts" post.author.username %}"
+                  class="hover:underline link-info text-sky-700">{{ post.author }}</a>
+            on {{ post.date_posted|date:"F d, Y" }}</p>
+          <p class="mt-2 text-body">{{ post.content }}</p>
+        </article>
+      </div>
+    </div>
+  {% endfor %}
+  {% if is_paginated %}
+    <div class="flex justify-center md:justify-start">
+      {% if page_obj.has_previous %}
+        <a
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          href="?page=1">First</a>
+        <a
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
 
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a
+            class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+            href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+          <a
+            class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+            href="?page={{ num }}">{{ num }}</a>
+
         {% endif %}
+      {% endfor %}
 
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
-                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-
-            {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
-
-    {% endif %}
+      {% if page_obj.has_next %}
+        <a
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a
+          class="inline-block py-1 px-3 mb-4 text-xl font-normal leading-normal text-center no-underline align-middle bg-white rounded border shadow-sm select-none md:text-base hover:text-white me-1 whitespace-no-wrap text-sky-700 border-sky-700 hover:bg-sky-700"
+          href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+    </div>
+  {% endif %}
 {% endblock content %}
